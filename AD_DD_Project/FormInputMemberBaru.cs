@@ -50,12 +50,6 @@ namespace AD_DD_Project
         private void Btn_Save_Click(object sender, EventArgs e)
         {
 
-            if (Txb_OidPembeli != null || Txb_OnamaPembeli != null || Txb_OemailPembeli != null || Txb_OtelpPembeli != null || Txb_OalamatPembeli != null || Txb_OgenderPembeli != null || Txb_OkotaPembeli != null || txb_OtglLahirPembeli != null)
-            {
-                MessageBox.Show("Semua Data Harus Lengkap");
-            }
-            else
-            {
                 sqlConnect.Open();
                 sqlQuery = "insert INTO MEMBER (ID_PEMBELI, NAMA_PEMBELI, EMAIL_PEMBELI,  TELP_PEMBELI,  ALAMAT_PEMBELI,  GENDER_PEMBELI,   KOTA_PEMBELI,  TGL_LAHIR_PEMBELI) values ('" + Txb_OidPembeli.Text + "','" + Txb_OnamaPembeli.Text + "','" + Txb_OemailPembeli.Text + "','" + Txb_OtelpPembeli.Text + "', '" + Txb_OalamatPembeli.Text + "','" + Txb_OgenderPembeli.Text + "','" + Txb_OkotaPembeli.Text + "',,'" + txb_OtglLahirPembeli.Text + "');";
                 sqlCommand = new MySqlCommand(sqlQuery, sqlConnect);
@@ -63,7 +57,7 @@ namespace AD_DD_Project
                 sqlCommand.ExecuteNonQuery();
                 sqlConnect.Close();
                 MessageBox.Show("Data member baru bernama " + Txb_OnamaPembeli.Text + " berhasil diinput.");
-            }
+            
 
         }
     }

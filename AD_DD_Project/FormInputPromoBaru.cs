@@ -43,13 +43,20 @@ namespace AD_DD_Project
 
         private void Btn_Save_Click(object sender, EventArgs e)
         {
-            sqlConnect.Open();
+            if (Txb_OidPromosi != null || Txb_Otgl_PromosiDiBuka != null || Txb_OAkhirPromosi != null || Txb_OBesarPromo != null)
+            {
+                MessageBox.Show("Semua Data Harus Lengkap");
+            }
+            else
+            { 
+                sqlConnect.Open();
             sqlQuery = "insert INTO PROMOSI_DISKON (ID_PROMOSI, TGL_PROMOSI_DIBUKA, AKHIR_PROMOSI, BESAR_PROMO) values ('" + Txb_OidPromosi.Text + "','" + Txb_Otgl_PromosiDiBuka.Text + "','" + Txb_OAkhirPromosi.Text + "','" + Txb_OBesarPromo.Text + "');";
             sqlCommand = new MySqlCommand(sqlQuery, sqlConnect);
             sqlAdapter = new MySqlDataAdapter(sqlCommand);
             sqlCommand.ExecuteNonQuery();
             sqlConnect.Close();
             MessageBox.Show("Data promo baru dengan ID: " + Txb_OidPromosi.Text + " berhasil diinput.");
+            }
         }
     }
 }

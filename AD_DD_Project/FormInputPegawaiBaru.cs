@@ -43,13 +43,20 @@ namespace AD_DD_Project
 
         private void Btn_Save_Click(object sender, EventArgs e)
         {
-            sqlConnect.Open();
-            sqlQuery = "insert INTO PEGAWAI (ID_PEGAWAI, ID_TOKO, NAMA_PEGAWAI, EMAIL_PEGAWAI,  TELP_PEGAWAI,  ALAMAT_PEGAWAI,  GENDER_PEGAWAI,   LVL_PEGAWAI,  PASSWORD_LOGIN) values ('" + Txb_OidPegawai.Text + "','" + Txb_OIdtoko.Text + "','" + txb_NamPegawai.Text + "','" + Txb_OEmailPegawai.Text + "','" + Txb_telpPegawai.Text + "','" + Txb_OalamatPegawai.Text + "','" + Txb_OgenderPegawai.Text + "','" + Txb_OlvlPegawai.Text + "','" + txb_OPasswordLogin.Text + "');";
-            sqlCommand = new MySqlCommand(sqlQuery, sqlConnect);
-            sqlAdapter = new MySqlDataAdapter(sqlCommand);
-            sqlCommand.ExecuteNonQuery();
-            sqlConnect.Close();
-            MessageBox.Show("Data pegawai baru bernama " + txb_NamPegawai.Text + " berhasil diinput.");
+            if (Txb_OidPegawai != null || Txb_OIdtoko != null || txb_NamPegawai != null || Txb_OEmailPegawai != null || Txb_telpPegawai != null || Txb_OalamatPegawai != null || Txb_OgenderPegawai != null || Txb_OlvlPegawai != null || txb_OPasswordLogin != null)
+            {
+                MessageBox.Show("Semua Data Harus Lengkap");
+            }
+            else
+            {
+                sqlConnect.Open();
+                sqlQuery = "insert INTO PEGAWAI (ID_PEGAWAI, ID_TOKO, NAMA_PEGAWAI, EMAIL_PEGAWAI,  TELP_PEGAWAI,  ALAMAT_PEGAWAI,  GENDER_PEGAWAI,   LVL_PEGAWAI,  PASSWORD_LOGIN) values ('" + Txb_OidPegawai.Text + "','" + Txb_OIdtoko.Text + "','" + txb_NamPegawai.Text + "','" + Txb_OEmailPegawai.Text + "','" + Txb_telpPegawai.Text + "','" + Txb_OalamatPegawai.Text + "','" + Txb_OgenderPegawai.Text + "','" + Txb_OlvlPegawai.Text + "','" + txb_OPasswordLogin.Text + "');";
+                sqlCommand = new MySqlCommand(sqlQuery, sqlConnect);
+                sqlAdapter = new MySqlDataAdapter(sqlCommand);
+                sqlCommand.ExecuteNonQuery();
+                sqlConnect.Close();
+                MessageBox.Show("Data pegawai baru bernama " + txb_NamPegawai.Text + " berhasil diinput.");
+            }              
         }
     }
 }

@@ -44,13 +44,21 @@ namespace AD_DD_Project
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            sqlConnect.Open();
-            sqlQuery = "insert INTO TOKO (ID_TOKO, LOKASI_TOKO, TELP_TOKO) values ('"+ tBoxIDtokoBaru.Text +"','"+ tBoxAlamat.Text +"','"+ tBoxNoTelp.Text +"');";
-            sqlCommand = new MySqlCommand(sqlQuery, sqlConnect);
-            sqlAdapter = new MySqlDataAdapter(sqlCommand);
-            sqlCommand.ExecuteNonQuery();
-            sqlConnect.Close();
-            MessageBox.Show("Data toko baru dengan ID: " + tBoxIDtokoBaru.Text + " berhasil diinput.");
+            if (tBoxIDtokoBaru != null || tBoxAlamat != null || tBoxNoTelp != null)
+            {
+                MessageBox.Show("Semua Data Harus Lengkap");
+            }
+            else
+            {
+
+                sqlConnect.Open();
+                sqlQuery = "insert INTO TOKO (ID_TOKO, LOKASI_TOKO, TELP_TOKO) values ('" + tBoxIDtokoBaru.Text + "','" + tBoxAlamat.Text + "','" + tBoxNoTelp.Text + "');";
+                sqlCommand = new MySqlCommand(sqlQuery, sqlConnect);
+                sqlAdapter = new MySqlDataAdapter(sqlCommand);
+                sqlCommand.ExecuteNonQuery();
+                sqlConnect.Close();
+                MessageBox.Show("Data toko baru dengan ID: " + tBoxIDtokoBaru.Text + " berhasil diinput.");
+            }
         }
     }
 }

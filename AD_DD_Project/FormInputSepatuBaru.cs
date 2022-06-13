@@ -44,13 +44,21 @@ namespace AD_DD_Project
 
         private void Btn_Save_Click(object sender, EventArgs e)
         {
-            sqlConnect.Open();
-            sqlQuery = "insert INTO SEPATU (ID_SEPATU, NAMA_SEPATU, WARNA_SEPATU, UKURAN_SEPATU, STOCK_SEPATU, HARGA_PENJUALAN, HARGA_PEMBELIAN) values ('" + Txb_Oidsepatu.Text + "','" + Txb_OnamaSepatu.Text + "','" + Txb_OwarnaSepatu.Text + "','" + Txb_OukuranSepatu.Text + "', '" + Txb_OstockSepatu.Text + "','" + Txb_OhargaPenjualan.Text + "','" + Txb_OhargaPembelian.Text + "');";
-            sqlCommand = new MySqlCommand(sqlQuery, sqlConnect);
-            sqlAdapter = new MySqlDataAdapter(sqlCommand);
-            sqlCommand.ExecuteNonQuery();
-            sqlConnect.Close();
-            MessageBox.Show("Data sepatu baru bernama " + Txb_OnamaSepatu.Text + " berhasil diinput.");
+            if (Txb_Oidsepatu != null || Txb_OnamaSepatu != null || Txb_OwarnaSepatu != null || Txb_OukuranSepatu != null || Txb_OstockSepatu != null || Txb_OhargaPenjualan != null || Txb_OhargaPembelian != null)
+            {
+                MessageBox.Show("Semua Data Harus Lengkap");
+            }
+            else
+            {
+
+                sqlConnect.Open();
+                sqlQuery = "insert INTO SEPATU (ID_SEPATU, NAMA_SEPATU, WARNA_SEPATU, UKURAN_SEPATU, STOCK_SEPATU, HARGA_PENJUALAN, HARGA_PEMBELIAN) values ('" + Txb_Oidsepatu.Text + "','" + Txb_OnamaSepatu.Text + "','" + Txb_OwarnaSepatu.Text + "','" + Txb_OukuranSepatu.Text + "', '" + Txb_OstockSepatu.Text + "','" + Txb_OhargaPenjualan.Text + "','" + Txb_OhargaPembelian.Text + "');";
+                sqlCommand = new MySqlCommand(sqlQuery, sqlConnect);
+                sqlAdapter = new MySqlDataAdapter(sqlCommand);
+                sqlCommand.ExecuteNonQuery();
+                sqlConnect.Close();
+                MessageBox.Show("Data sepatu baru bernama " + Txb_OnamaSepatu.Text + " berhasil diinput.");
+            }
         }
     }
 }
